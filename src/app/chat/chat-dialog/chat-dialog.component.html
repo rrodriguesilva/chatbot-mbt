@@ -1,0 +1,38 @@
+<div class="chat-panel card card-default">
+  <div class="card-header">
+      <i class="fa fa-comments fa-fw"></i>
+      Chat
+  </div>
+  <ng-container *ngFor="let message of messages | async">
+    <div class="card-body">
+
+      <ul class="chat message" [ngClass]="{ 'from': message.sentBy === 'bot',
+                                        'to':   message.sentBy === 'user' }">
+
+        <li *ngIf="message.content === 'foto' else notRend" class="clearfix" [innerHTML]="message.content" [ngClass]="{ 'from': message.sentBy === 'bot',
+          'to':   message.sentBy === 'user' }"></li>
+        
+        <ng-template #notRend>
+            <li class="clearfix" [innerHTML]="message.content"></li>
+        </ng-template>                                        
+        
+      </ul>
+      </div>
+    </ng-container>
+  <div class="card-footer">
+      <div class="input-group">
+          <input [(ngModel)]="formValue" (keyup.enter)="sendMessage()" id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here...">
+          <span class="input-group-btn">
+              <button (click)="sendMessage()" class="btn btn-warning btn-sm" id="btn-chat">
+                  Send
+              </button>
+          </span>
+      </div>
+  </div>
+</div>
+
+<!-- <input [(ngModel)]="formValue" (keyup.enter)="sendMessage()" type="text"> -->
+
+<!-- <button (click)="sendMessage()">Send</button> -->
+
+<!-- asdadasdasdasdas -->
