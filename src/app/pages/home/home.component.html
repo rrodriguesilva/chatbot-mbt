@@ -1,3 +1,23 @@
+<div class="card col-lg-3">
+    <div class="card-body table-responsive">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Pergunta</th>
+            </tr>
+            </thead>
+<ng-container *ngFor="let q of questions">
+                <tbody>
+                <tr>
+                    <th scope="row"> {{q.id}}</th>
+                    <td> {{q.question}}</td>
+                </tr>
+                </tbody>
+</ng-container>
+        </table>
+    </div>
+</div>
 <div class="col-lg-6">
     <chat-dialog></chat-dialog>
 </div>
