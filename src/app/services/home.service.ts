@@ -9,6 +9,9 @@ import 'rxjs/add/operator/do';
 export class Questions {
     constructor(public Id: number, public Question: string) {}
 }
+export class AlertApi {
+    constructor(public msg: string) {}
+}
 @Injectable()
 export class HomeService {
     private apiUrl = 'http://localhost:8080/';
@@ -19,6 +22,13 @@ getQuestions(): Observable<Questions> {
                 .map((response: Response) => <Questions>response.json())
                 .do(data => JSON.stringify(data))
                 .catch(this.handleError);
+}
+
+getAlertApi(): Observable<AlertApi> {
+    return  this._http.get(this.apiUrl + '/home/alert')
+    .map((response: Response) => <AlertApi>response.json())
+    .do(data => JSON.stringify(data))
+    .catch(this.handleError);
 }
 private handleError(error: Response) {
     console.error(error);

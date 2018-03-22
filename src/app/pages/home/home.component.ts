@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HomeService, Questions } from '../../services/home.service';
+import { HomeService, Questions, AlertApi } from '../../services/home.service';
+import 'rxjs/add/observable/throw';
 
 
 @Component({
@@ -10,11 +11,16 @@ import { HomeService, Questions } from '../../services/home.service';
 })
 export class HomeComponent implements OnInit {
   questions: Questions;
-  constructor(private _questions: HomeService) { }
+  alertApi: AlertApi;
+  constructor(private _homeService: HomeService) { }
 
   ngOnInit() {
-    this._questions.getQuestions().subscribe((data: Questions) => this.questions = data,
+    this._homeService.getQuestions().subscribe((data: Questions) => this.questions = data,
   error => console.error(error));
+
+    this._homeService.getAlertApi().subscribe((data: AlertApi) => this.alertApi = data,
+  error => console.error(error));
+
   }
 
 }
