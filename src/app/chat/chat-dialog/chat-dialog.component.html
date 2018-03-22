@@ -1,7 +1,6 @@
 <div class="chat-panel card card-default">
   <div class="card-header">
-      <i class="fa fa-comments fa-fw"></i>
-      Chat
+      Chatbot
   </div>
   <ng-container *ngFor="let message of messages | async">
     <div class="card-body">
@@ -9,7 +8,7 @@
       <ul class="chat message" [ngClass]="{ 'from': message.sentBy === 'bot',
                                         'to':   message.sentBy === 'user' }">
 
-        <li *ngIf="message.content === 'foto' else notRend" class="clearfix" [innerHTML]="message.content" [ngClass]="{ 'from': message.sentBy === 'bot',
+        <li *ngIf="message.content.includes('imagem') else notRend" class="clearfix" [innerHTML]="message.content" [ngClass]="{ 'from': message.sentBy === 'bot',
           'to':   message.sentBy === 'user' }"></li>
         
         <ng-template #notRend>
@@ -30,9 +29,3 @@
       </div>
   </div>
 </div>
-
-<!-- <input [(ngModel)]="formValue" (keyup.enter)="sendMessage()" type="text"> -->
-
-<!-- <button (click)="sendMessage()">Send</button> -->
-
-<!-- asdadasdasdasdas -->
