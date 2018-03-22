@@ -10,7 +10,7 @@ export class Questions {
     constructor(public Id: number, public Question: string) {}
 }
 export class AlertApi {
-    constructor(public msg: string) {}
+    constructor(public apimsg: string) {}
 }
 @Injectable()
 export class HomeService {
@@ -18,14 +18,14 @@ export class HomeService {
 constructor(private _http: Http) { }
 
 getQuestions(): Observable<Questions> {
-    return  this._http.get(this.apiUrl + '/questionsChat/all')
+    return  this._http.get(this.apiUrl + 'questionsChat/all')
                 .map((response: Response) => <Questions>response.json())
                 .do(data => JSON.stringify(data))
                 .catch(this.handleError);
 }
 
 getAlertApi(): Observable<AlertApi> {
-    return  this._http.get(this.apiUrl + '/home/alert')
+    return  this._http.get(this.apiUrl + 'home/alert')
     .map((response: Response) => <AlertApi>response.json())
     .do(data => JSON.stringify(data))
     .catch(this.handleError);

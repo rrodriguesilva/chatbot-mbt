@@ -18,7 +18,7 @@
         </table>
     </div>
 </div>
-<div [innerHTML]="alertApi.msg"></div>
+<div *ngIf="alertApi" [innerHTML]="alertApi.apimsg"></div>
 <div class="col-lg-6">
     <chat-dialog></chat-dialog>
 </div>
